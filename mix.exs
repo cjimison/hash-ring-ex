@@ -5,10 +5,10 @@ defmodule HashRing.Mixfile do
     [
       app: :hash_ring_ex,
       version: "1.1.2",
-      elixir: "~> 1.0.0 or ~> 0.15.1",
-      description: description,
-      package: package,
-      deps: deps,
+      elixir: "~> 1.4 or ~> 1.3 or ~> 1.0.0 or ~> 0.15.1",
+      description: description(),
+      package: package(),
+      deps: deps(),
       compilers: [:yecc, :leex, :rebar, :erlang, :elixir, :app]
     ]
   end
