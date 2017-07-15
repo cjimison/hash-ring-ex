@@ -55,7 +55,7 @@ defmodule HashRing.Driver do
   """
   @spec close(pid) :: :ok
   def close(port) do
-    send(port, {self, :close})
+    send(port, {self(), :close})
     receive do
       {port = port, :closed} ->
         :ok
@@ -122,7 +122,7 @@ defmodule HashRing.Driver do
   """
   @spec load :: :ok | {:error, term}
   def load do
-    case :erl_ddll.load_driver(lib_path, @driver) do
+    case :erl_ddll.load_driver(lib_path(), @driver) do
       :ok ->
         :ok
       {:error, :already_loaded} ->
@@ -164,7 +164,7 @@ defmodule HashRing.Driver do
   #
 
   defp command(port, message) do
-    send(port, {self, {:command, message}})
+    send(port, {self(), {:command, message}})
   end
 
   defp lib_path do
